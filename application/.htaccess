@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
         RewriteEngine On
-        RewriteBase /bcsq/
+        RewriteBase /bcsqs/
 
         # Directs all EE web requests through the site index file
         RewriteCond %{REQUEST_FILENAME} !-f
