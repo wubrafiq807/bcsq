@@ -20,6 +20,9 @@
     <script src="<?php echo base_url("js/")?>custom.min.js"></script>
      <script src="<?php echo base_url("js/")?>jquery.validate.min.js"></script>
      <script src="<?php echo base_url("js/")?>additional-methods.min.js"></script>
+      <script src="<?php echo base_url("js/")?>jquery.dataTables.min.js"></script>
+      <script src="<?php echo base_url("js/")?>sweetalert.min.js"></script>
+      
 
 </body>
 
