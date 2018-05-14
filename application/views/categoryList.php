@@ -62,7 +62,7 @@
                                             <td><?php echo trim($category['created_by']) ?></td>
                                             <td><?php echo trim($category['modified_date']) ?></td>
                                             <td><?php echo trim($category['modified_by']) ?></td>
-                                            <td><?php echo trim($category['status']) ?></td>
+                                            <td style="<?php if($category['status']=='Active'){ echo 'color:green';}else{    echo 'color:red'; }?> "><?php echo trim($category['status']) ?></td>
                                             <td>
                                                 <a href="<?php echo base_url("editCategory?id=" . $category['id']) ?>" style="width: 72px;height: 45px;text-align: center;padding-top: 12px;margin: 4px;" class="btn btn-info">Edit</a>  
                                                 <a href="<?php echo base_url("deleteCategory?id=" . $category['id']) ?>" style="width: 72px;height: 45px;text-align: center;padding-top: 12px;margin: 4px;" onclick="validateForm('<?php echo base_url("deleteCategory?id=" . $category['id']) ?>')"  class="btn btn-danger">Delete</a>   

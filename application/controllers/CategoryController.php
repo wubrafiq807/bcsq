@@ -77,7 +77,7 @@ class CategoryController extends CI_Controller {
                 $status = "Inactive";
             }
             if ($modifiedBy) {
-                $modifiedByName = $value['modified_by'];
+                $modifiedByName = $modifiedBy['full_name'];
                 $modifiedByDate = $value['modified_date'];
             } else {
                 $modifiedByName = "No Modified Yet";
