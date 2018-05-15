@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CategoryController extends CI_Controller {
+class CategorySubController extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -16,40 +16,43 @@ class CategoryController extends CI_Controller {
         }
     }
 
-    public function addCategory() {
+    public function addSubCategory() {
         $this->checkLogin();
-        $this->load->view('addCategory');
+        $data['categoryList'] = $this->Common_model->getTableAllData("category");
+        $this->load->view('addSubCategory', $data);
     }
 
-    public function saveCategory() {
+    public function saveSubCategory() {
         $this->checkLogin();
         if (isset($_POST['id'])) {
             $data = array(
                 'name' => $_POST['name'],
                 'description' => $_POST['description'],
+                'category_id' => $_POST['category_id'],
                 'modified_date' => date('Y-m-d H:i:s'),
                 'modified_by' => $_SESSION['user_session']['id'],
                 'status' => $_POST['status'],
             );
-            $this->Common_model->updateFromArray('category', $data, array('id' => $_POST['id']));
+            $this->Common_model->updateFromArray('subcategory', $data, array('id' => $_POST['id']));
             $this->session->set_flashdata('message', "Category Updated By You.");
         } else {
             $data = array(
                 'name' => $_POST['name'],
                 'description' => $_POST['description'],
                 'created_date' => date('Y-m-d H:i:s'),
+                'category_id' => $_POST['category_id'],
                 'created_by' => $_SESSION['user_session']['id'],
                 'status' => $_POST['status'],
             );
-            $this->Common_model->saveTableDataByArray('category', $data);
+            $this->Common_model->saveTableDataByArray('subcategory', $data);
             $this->session->set_flashdata('message', "New Category Created By You.");
         }
-        redirect(base_url('getCatList'));
+        redirect(base_url('getSubCatList'));
     }
 
-    public function checkUniqCategory() {
+    public function checkUniqSubCategory() {
         $this->checkLogin();
-        $result = $this->Common_model->getTableDataByArray('category', $_POST);
+        $result = $this->Common_model->getTableDataByArray('subcategory', $_POST);
         if ($result) {
             echo json_encode(array("status" => true));
         } else {
@@ -57,13 +60,13 @@ class CategoryController extends CI_Controller {
         }
     }
 
-    public function getCatList() {
+    public function getSubCatList() {
         $this->checkLogin();
         $data = array(
             'status!=' => 2,
         );
-        $result = $this->Common_model->getTableDataByArray('category', $data);
-        $final_result['categoryList'] = array();
+        $result = $this->Common_model->getTableDataByArray('subcategory', $data);
+        $final_result['subCategoryList'] = array();
         foreach ($result as $key => $value) {
             $createdBy = $this->Common_model->getTableDataByArrayRow('users', array('id' => $value['created_by']));
             $modifiedBy = $this->Common_model->getTableDataByArrayRow('users', array('id' => $value['modified_by']));
@@ -83,7 +86,7 @@ class CategoryController extends CI_Controller {
                 $modifiedByName = "No Modified Yet";
                 $modifiedByDate = "No Modified Yet";
             }
-            $final_result['categoryList'][] = array(
+            $final_result['subCategoryList'][] = array(
                 'id' => $value['id'],
                 'name' => $value['name'],
                 'description' => trim($value['description']),
@@ -91,27 +94,29 @@ class CategoryController extends CI_Controller {
                 'created_date' => $value['created_date'],
                 'modified_date' => $modifiedByDate,
                 'modified_by' => $modifiedByName,
-                'status' => $status
+                'status' => $status,
             );
         }
-        $this->load->view('categoryList', $final_result);
+        $this->load->view('subCategoryList', $final_result);
     }
 
-    public function editCategory() {
-        $data['category'] = $modifiedBy = $this->Common_model->getTableDataByArrayRow('category', array('id' => $_GET['id']));
+    public function editSubCategory() {
+        $data['subCategory'] = $modifiedBy = $this->Common_model->getTableDataByArrayRow('subcategory', array('id' => $_GET['id']));
         $data['edit'] = TRUE;
-        $this->load->view('addCategory', $data);
+        $data['categoryList'] = $this->Common_model->getTableAllData("category");
+
+        $this->load->view('addSubCategory', $data);
     }
 
-    public function deleteCategory() {
+    public function deleteSubCategory() {
         $this->checkLogin();
         $data = array(
             'status' => 2,
         );
-        $this->Common_model->updateFromArray('category', $data, array('id' => $_GET['id']));
+        $this->Common_model->updateFromArray('subcategory', $data, array('id' => $_GET['id']));
 
-        $this->session->set_flashdata('message', "Category Deleted By You.");
-        redirect(base_url('getCatList'));
+        $this->session->set_flashdata('message', "Sub Category Deleted By You.");
+        redirect(base_url('getSubCatList'));
     }
 
 }

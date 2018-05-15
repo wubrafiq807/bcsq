@@ -15,3 +15,11 @@ $route['checkUniqCategory'] = 'CategoryController/checkUniqCategory/$1';
 $route['getCatList'] = 'CategoryController/getCatList/$1';
 $route['editCategory'] = 'CategoryController/editCategory/$1';
 $route['deleteCategory'] = 'CategoryController/deleteCategory/$1';
+
+//route for Sub category
+$route['addSubCategory'] = 'CategorySubController/addSubCategory/$1';
+$route['saveSubCategory'] = 'CategorySubController/saveSubCategory/$1';
+$route['checkUniqSubCategory'] = 'CategorySubController/checkUniqSubCategory/$1';
+$route['getSubCatList'] = 'CategorySubController/getSubCatList/$1';
+$route['editSubCategory'] = 'CategorySubController/editSubCategory/$1';
+$route['deleteSubCategory'] = 'CategorySubController/deleteSubCategory/$1';

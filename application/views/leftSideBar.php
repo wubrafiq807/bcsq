@@ -13,13 +13,15 @@
                               
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-primary pull-right">3</span></span></a>
+                        
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Sub Category <span class="label label-rouded label-primary pull-right">3</span></span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="index.html">Add</a></li>
-                                <li><a href="index1.html">Dashboard 2 </a></li>
-                                <li><a href="index2.html">Dashboard 3 </a></li>
+                                <li><a href="<?php echo base_url('addSubCategory')?>">Add Sub Category</a></li>
+                                <li><a href="<?php echo base_url("getSubCatList")?>">Sub Category List</a></li>
+                              
                             </ul>
                         </li>
+                        
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>

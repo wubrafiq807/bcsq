@@ -13,6 +13,11 @@ class Common_model extends CI_Model {
         return $this->db->get_where($tableName,$params)->result_array();
     }
     
+    public function getTableAllData($tableName) {
+        
+        return $this->db->get($tableName)->result_array();
+    }
+    
     public function getTableDataByArrayRow($tableName,$params) {
         
         return $this->db->get_where($tableName,$params)->row_array();
