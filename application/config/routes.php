@@ -23,3 +23,5 @@ $route['checkUniqSubCategory'] = 'CategorySubController/checkUniqSubCategory/$1'
 $route['getSubCatList'] = 'CategorySubController/getSubCatList/$1';
 $route['editSubCategory'] = 'CategorySubController/editSubCategory/$1';
 $route['deleteSubCategory'] = 'CategorySubController/deleteSubCategory/$1';
+
+$route['addQuestionAndAnswer'] = 'QuestionAndAnswerController/addQuestionAndAnswer/$1';

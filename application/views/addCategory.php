@@ -59,8 +59,8 @@
                                         <div class="col-sm-9">
                                             <select name="status" class="form-control">
                                                 <option value="">Select</option>
-                                                <option value="1" <?php if (isset($category['status']) && $category['status'] == 1) echo 'selected="selected' ?>>Active</option>
-                                                <option value="0" <?php if (isset($category['status']) && $category['status'] == 0) echo 'selected="selected' ?>>InActive</option>
+                                                <option value="1" <?php if (isset($category['status']) && $category['status'] == 1) echo 'selected="selected"' ?>>Active</option>
+                                                <option value="0" <?php if (isset($category['status']) && $category['status'] == 0) echo 'selected="selected"' ?>>InActive</option>
                                             </select>
 
                                         </div>
