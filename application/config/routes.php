@@ -25,3 +25,5 @@ $route['editSubCategory'] = 'CategorySubController/editSubCategory/$1';
 $route['deleteSubCategory'] = 'CategorySubController/deleteSubCategory/$1';
 
 $route['addQuestionAndAnswer'] = 'QuestionAndAnswerController/addQuestionAndAnswer/$1';
+$route['saveQueAndAns'] = 'QuestionAndAnswerController/saveQueAndAns/$1';
+
