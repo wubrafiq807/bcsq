@@ -17,7 +17,37 @@ class ApiController extends CI_Controller {
     }
 
     public function getApi() {
-        $data='{ "method":"GET","table":"John"}';
+        $json = '{ "method":"GET","action":"getallcategory"}';
+        $json = '{ "method":"GET","action":"getAllSubCat"}';
+         $json = '{ "method":"GET","action":"getAllQue"}';
+          $json = '{ "method":"GET","action":"getAllAns"}';
+        $data = json_decode($json);
+        $response;
+        switch ($data->method) {
+            case "GET":
+                $response = $this->getallcategory($data);
+                break;
+
+            default:
+                $response=array('error'=>'invalid request.');
+                break;
+        }
+        echo json_encode($response);
+    }
+
+    private function getallcategory($data) {
+        
+        if ((isset($data->method) && $data->method == 'GET') && (isset($data->action) && $data->action == 'getallcategory')) {
+            return $this->Common_model->getTableAllData('category');
+        } else if ((isset($data->method) && $data->method == 'GET') && (isset($data->action) && $data->action == 'getAllSubCat')) {
+            return $this->Common_model->getTableAllData('subcategory');
+        } else if ((isset($data->method) && $data->method == 'GET') && (isset($data->action) && $data->action == 'getAllQue')) {
+            return $this->Common_model->getTableAllData('question');
+        } else if ((isset($data->method) && $data->method == 'GET') && (isset($data->action) && $data->action == 'getAllAns')) {
+            return $this->Common_model->getTableAllData('answer');
+        } else {
+            return array('error' => 'Invalid request.');
+        }
     }
 
 }
