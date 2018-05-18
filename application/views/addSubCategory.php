@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group ">
+                                <div class="form-group has-success">
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Category Description</label>
                                         <div class="col-sm-9">

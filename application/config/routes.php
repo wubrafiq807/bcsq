@@ -30,3 +30,4 @@ $route['getQueAndAnsList'] = 'QuestionAndAnswerController/getQueAndAnsList/$1';
 $route['editQuestion'] = 'QuestionAndAnswerController/editQuestion/$1';
 $route['deleteQuestion'] = 'QuestionAndAnswerController/deleteQuestion/$1';
 $route['updateQueandans'] = 'QuestionAndAnswerController/updateQueandans/$1';
+$route['api'] = 'ApiController/getApi/$1';

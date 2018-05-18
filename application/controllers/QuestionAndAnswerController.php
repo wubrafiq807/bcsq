@@ -121,7 +121,9 @@ class QuestionAndAnswerController extends CI_Controller {
         $data['edit'] = TRUE;
         $data['answer'] = $modifiedBy = $this->Common_model->getTableDataByArrayRow('answer', array('question_id' => $_GET['id']));
         $data['subCatList'] = $this->Common_model->getTableAllData("subcategory");
-
+//        echo '<pre>';
+//        print_r($data);
+//        exit;
         $this->load->view('editQueAndAns', $data);
     }
 
@@ -130,19 +132,20 @@ class QuestionAndAnswerController extends CI_Controller {
             'modified_date' => date('Y-m-d H:i:s'),
             'modified_by' => $_SESSION['user_session']['id'],
         );
-        if (isset($_POST['sub_category_id_' . $i])) {
+        if (isset($_POST['sub_category_id_0'])) {
             $near = array(
-                'sub_category_id' => $_POST['sub_category_id_' . $i],
-                'question' => $_POST['question_' . $i],
-                'description' => $_POST['description_' . $i],
-                'is_multiple_ans' => $_POST['is_multiple_ans_' . $i],
-                'status' => $_POST['status_' . $i]
+                'sub_category_id' => $_POST['sub_category_id_0'],
+                'question' => $_POST['question_0'],
+                'description' => $_POST['description_0'],
+                'is_multiple_ans' => $_POST['is_multiple_ans_0'],
+                'status' => $_POST['status_0']
             );
             $data = array_merge_recursive($data, $near);
-            if ((int) $_POST['is_multiple_ans_' . $i] == 0) {
-                $data = array_merge($data, array('answer' => $_POST['answer_' . $i]));
+            if ((int) $_POST['is_multiple_ans_0'] == 0) {
+                $data = array_merge($data, array('answer' => $_POST['answer_0']));
             }
-            $quesion_id = $this->Common_model->saveTableDataByArray('question', $data);
+
+            $this->Common_model->updateFromArray('question', $data, array('id' => $_POST['id']));
             $answerArray = array(
                 'modified_date' => date('Y-m-d H:i:s'),
                 'modified_by' => $_SESSION['user_session']['id'],
@@ -156,10 +159,23 @@ class QuestionAndAnswerController extends CI_Controller {
                     'answer4' => $_POST['answer4_0'],
                     'cur_answer' => $_POST['multiple_ans_0']
                 );
-                $answerArray = array_merge($answerArray, $newAnsArray);
-                $this->Common_model->saveTableDataByArray('answer', $answerArray);
+                $answerArrayUpdate = array_merge($answerArray, $newAnsArray);
+                $isdata = $this->Common_model->getTableDataByArrayRow('answer', array('question_id' => $_POST['id']));
+
+                if (!$isdata) {
+                    $answerArraycrea = array(
+                        'created_date' => date('Y-m-d H:i:s'),
+                        'created_by' => $_SESSION['user_session']['id'],
+                    );
+                    $createdarra = array_merge($answerArraycrea, $newAnsArray);
+                    $this->Common_model->saveTableDataByArray('answer', $answerArrayUpdate);
+                } else {
+                    $this->Common_model->updateFromArray('answer', $answerArrayUpdate, array('question_id' => $_POST['id']));
+                }
             }
         }
+        $this->session->set_flashdata('message', "One Question has been  Modified By You.");
+        redirect(base_url('getQueAndAnsList'));
     }
 
 }
