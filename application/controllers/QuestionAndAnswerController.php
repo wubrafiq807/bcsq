@@ -23,7 +23,7 @@ class QuestionAndAnswerController extends CI_Controller {
     }
 
     public function saveQueAndAns() {
-
+        
         for ($i = 0; $i <= (int) $_POST['final_total_dataSize']; $i++) {
             $data = array(
                 'created_date' => date('Y-m-d H:i:s'),
@@ -38,7 +38,7 @@ class QuestionAndAnswerController extends CI_Controller {
                     'status' => $_POST['status_' . $i]
                 );
                 $data = array_merge_recursive($data, $near);
-                if ((int) $_POST['is_multiple_ans_' . $i] == 0) {
+                if (isset($_POST['is_multiple_ans_' . $i])&& (int)$_POST['is_multiple_ans_' . $i]  == 0) {
                     $data = array_merge($data, array('answer' => $_POST['answer_' . $i]));
                 }
                 $quesion_id = $this->Common_model->saveTableDataByArray('question', $data);
@@ -46,20 +46,26 @@ class QuestionAndAnswerController extends CI_Controller {
                     'created_date' => date('Y-m-d H:i:s'),
                     'created_by' => $_SESSION['user_session']['id'],
                 );
-                if ((int) $_POST['is_multiple_ans_' . $i] == 1) {
+                if ((isset($_POST['is_multiple_ans_' . $i]))&&(int) $_POST['is_multiple_ans_' . $i] == 1) {
+                    $curAns=0;
+                    if (isset($_POST['multiple_ans_' . $i])) {
+                        $curAns=$_POST['multiple_ans_' . $i];
+                    }
                     $newAnsArray = array(
                         'question_id' => (int) $quesion_id,
                         'answer1' => $_POST['answer1_' . $i],
                         'answer2' => $_POST['answer2_' . $i],
                         'answer3' => $_POST['answer3_' . $i],
                         'answer4' => $_POST['answer4_' . $i],
-                        'cur_answer' => $_POST['multiple_ans_' . $i]
+                        'cur_answer' => $curAns
                     );
                     $answerArray = array_merge($answerArray, $newAnsArray);
                     $this->Common_model->saveTableDataByArray('answer', $answerArray);
                 }
             }
         }
+        $this->session->set_flashdata('message', "Question has been  Added By You.");
+        redirect(base_url('getQueAndAnsList'));
     }
 
     public function getQueAndAnsList() {
