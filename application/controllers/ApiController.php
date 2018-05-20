@@ -21,11 +21,12 @@ class ApiController extends CI_Controller {
         $json = '{ "method":"GET","action":"getAllSubCat"}';
          $json = '{ "method":"GET","action":"getAllQue"}';
           $json = '{ "method":"GET","action":"getAllAns"}';
-        $data = json_decode($json);
+       // $data = json_decode($json);
+     
         $response;
-        switch ($data->method) {
+        switch ($_POST['methodType']) {
             case "GET":
-                $response = $this->getallcategory($data);
+                $response = $this->getallcategory($_POST);
                 break;
 
             default:
@@ -37,13 +38,13 @@ class ApiController extends CI_Controller {
 
     private function getallcategory($data) {
         
-        if ((isset($data->method) && $data->method == 'GET') && (isset($data->action) && $data->action == 'getallcategory')) {
+        if ((isset($data['methodType']) && $data['methodType'] == 'GET') && (isset($data['actionTypp']) && $data['actionTypp'] == 'getallcategory')) {
             return $this->Common_model->getTableAllData('category');
-        } else if ((isset($data->method) && $data->method == 'GET') && (isset($data->action) && $data->action == 'getAllSubCat')) {
+        } else if ((isset($data['methodType']) && $data['methodType'] == 'GET') && (isset($data['actionTypp']) && $data['actionTypp'] == 'getAllSubCat')) {
             return $this->Common_model->getTableAllData('subcategory');
-        } else if ((isset($data->method) && $data->method == 'GET') && (isset($data->action) && $data->action == 'getAllQue')) {
+        } else if ((isset($data['methodType']) && $data['methodType'] == 'GET') && (isset($data['actionTypp']) && $data['actionTypp'] == 'getAllQue')) {
             return $this->Common_model->getTableAllData('question');
-        } else if ((isset($data->method) && $data->method == 'GET') && (isset($data->action) && $data->action == 'getAllAns')) {
+        } else if ((isset($data['methodType']) && $data['methodType'] == 'GET') && (isset($data['actionTypp']) && $data['actionTypp'] == 'getAllAns')) {
             return $this->Common_model->getTableAllData('answer');
         } else {
             return array('error' => 'Invalid request.');
