@@ -30,7 +30,10 @@ class CategoryController extends CI_Controller {
                 'modified_date' => date('Y-m-d H:i:s'),
                 'modified_by' => $_SESSION['user_session']['id'],
                 'status' => $_POST['status'],
+                
             );
+           
+            $this->db->query('update category set updateCount=updateCount+1 where id='.$_POST['id'].'');
             $this->Common_model->updateFromArray('category', $data, array('id' => $_POST['id']));
             $this->session->set_flashdata('message', "Category Updated By You.");
         } else {

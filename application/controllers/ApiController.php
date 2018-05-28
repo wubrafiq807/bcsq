@@ -22,7 +22,7 @@ class ApiController extends CI_Controller {
          $json = '{ "method":"GET","action":"getAllQue"}';
           $json = '{ "method":"GET","action":"getAllAns"}';
        // $data = json_decode($json);
-     
+     if(!isset($_POST['methodType']))exit('No direct script access allowed');
         $response;
         switch ($_POST['methodType']) {
             case "GET":

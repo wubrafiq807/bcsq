@@ -150,7 +150,7 @@ class QuestionAndAnswerController extends CI_Controller {
             if ((int) $_POST['is_multiple_ans_0'] == 0) {
                 $data = array_merge($data, array('answer' => $_POST['answer_0']));
             }
-
+            $this->db->query('update question set updateCount=updateCount+1 where id='.$_POST['id'].'');
             $this->Common_model->updateFromArray('question', $data, array('id' => $_POST['id']));
             $answerArray = array(
                 'modified_date' => date('Y-m-d H:i:s'),
@@ -176,10 +176,12 @@ class QuestionAndAnswerController extends CI_Controller {
                     $createdarra = array_merge($answerArraycrea, $newAnsArray);
                     $this->Common_model->saveTableDataByArray('answer', $answerArrayUpdate);
                 } else {
+                    $this->db->query('update answer set updateCount=updateCount+1 where question_id='.$_POST['id'].'');
                     $this->Common_model->updateFromArray('answer', $answerArrayUpdate, array('question_id' => $_POST['id']));
                 }
             }
         }
+         
         $this->session->set_flashdata('message', "One Question has been  Modified By You.");
         redirect(base_url('getQueAndAnsList'));
     }

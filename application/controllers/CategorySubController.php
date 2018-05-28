@@ -33,6 +33,7 @@ class CategorySubController extends CI_Controller {
                 'modified_by' => $_SESSION['user_session']['id'],
                 'status' => $_POST['status'],
             );
+             $this->db->query('update subcategory set updateCount=updateCount+1 where id='.$_POST['id'].'');
             $this->Common_model->updateFromArray('subcategory', $data, array('id' => $_POST['id']));
             $this->session->set_flashdata('message', "Category Updated By You.");
         } else {
