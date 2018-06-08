@@ -31,3 +31,7 @@ $route['editQuestion'] = 'QuestionAndAnswerController/editQuestion/$1';
 $route['deleteQuestion'] = 'QuestionAndAnswerController/deleteQuestion/$1';
 $route['updateQueandans'] = 'QuestionAndAnswerController/updateQueandans/$1';
 $route['api'] = 'ApiController/getApi/$1';
+//user info
+$route['userProfile']='User/userProfile/$1';
+$route['checkUniqEmail']='User/checkUniqEmail/$1';
+$route['updateUserInfo']='User/updateUserInfo/$1';

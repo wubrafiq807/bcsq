@@ -23,119 +23,59 @@
                 
                 <!-- /# row -->
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 " style="text-align: center">
                         <div class="card">
                             <div class="card-title">
-                                <h4>Input States</h4>
+                                <h4>Total Number of Category</h4>
 
                             </div>
                             <div class="card-body">
-                                <div class="input-states">
-                                    <form class="form-horizontal">
-                                        <div class="form-group has-success">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input with success</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-warning">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input with warning</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-error">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input with error</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-success has-feedback">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input with success</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
-                                                    <span class="ti-check form-control-feedback"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-warning has-feedback">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input with warning</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
-                                                    <span class="ti-alert form-control-feedback"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-error has-feedback">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input with error</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
-                                                    <span class="ti-close form-control-feedback"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-default has-feedback">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input with icon</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
-                                                    <span class="ti-user form-control-feedback"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-success has-feedback">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input group with success</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="ti-user"></i></span>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <span class="ti-check form-control-feedback"></span>
-                                                    <span class="sr-only">(success)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-warning has-feedback">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input group with warning</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="ti-user"></i></span>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <span class="ti-alert form-control-feedback"></span>
-                                                    <span class="sr-only">(warning)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-error has-feedback">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Input group with error</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="ti-user"></i></span>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <span class="ti-close form-control-feedback"></span>
-                                                    <span class="sr-only">(error)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <div class="input-states" >
+                                    <a href="<?php echo base_url('getCatList')?>" class="btn btn-xl btn-info">
+                                         <?php echo $cat['totalCategory']?>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6" style="text-align: center">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Total Number of Sub Category</h4>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="input-states" >
+                                    <a href="<?php echo base_url('getSubCatList')?>" class="btn btn-xl btn-info">
+                                         <?php echo $subcat['totalSubCat']?>
+                                    </a>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+
+                    
+                    <!-- /# column -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="text-align: center">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Total Number of Que&&Ans</h4>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="input-states" >
+                                    <a href="<?php echo base_url('getQueAndAnsList')?>" class="btn btn-xl btn-info">
+                                         <?php echo $totalQue['totalQuestion']?>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- /# column -->
 
                     
