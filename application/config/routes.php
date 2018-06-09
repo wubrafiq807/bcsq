@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
@@ -32,6 +33,9 @@ $route['deleteQuestion'] = 'QuestionAndAnswerController/deleteQuestion/$1';
 $route['updateQueandans'] = 'QuestionAndAnswerController/updateQueandans/$1';
 $route['api'] = 'ApiController/getApi/$1';
 //user info
-$route['userProfile']='User/userProfile/$1';
-$route['checkUniqEmail']='User/checkUniqEmail/$1';
-$route['updateUserInfo']='User/updateUserInfo/$1';
+$route['userProfile'] = 'User/userProfile/$1';
+$route['checkUniqEmail'] = 'User/checkUniqEmail/$1';
+$route['updateUserInfo'] = 'User/updateUserInfo/$1';
+$route['addUsers'] = 'User/addUsers/$1';
+$route['checkUniqUserName']='User/checkUniqUserName/$1';
+$route['createUser']='User/createUser/$1';

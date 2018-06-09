@@ -38,8 +38,8 @@ include 'header.php'
                     </div>
                     <div class="card-body">
                         <div class="input-states">
-                            <form class="form-horizontal" name="reg" method="POST" action="<?php echo base_url("updateUserInfo") ?>">
-                                <?php if($this->session->hash_flashdata('message')){?>
+                            <form class="form-horizontal" name="reg" method="POST" action="<?php echo base_url("updateUserInfo") ?>" enctype="multipart/form-data">
+                                <?php if($this->session->flashdata('message')){?>
                                 <div class="form-group has-success" >
                                     <div class="row">
                                         <label class="col-sm-3"></label>
@@ -86,7 +86,7 @@ include 'header.php'
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Password</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="password" name="password" class="form-control"  >
+                                            <input type="password" id="password" name="password" class="form-control"  >
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@ include 'header.php'
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Confirm Password</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="password_confirm" name="password_confirm" class="form-control"  >
+                                            <input type="password" id="password_confirm" name="password_confirm" class="form-control"  >
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@ include 'header.php'
                                             <?php }?>
                                         </div>
                                         <div class="col-sm-7">
-                                            <input type="file" name="file" class="form-control">
+                                            <input type="file" name="image" class="form-control">
                                         </div>
                                     </div>
                                 </div>
