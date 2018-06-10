@@ -39,3 +39,5 @@ $route['updateUserInfo'] = 'User/updateUserInfo/$1';
 $route['addUsers'] = 'User/addUsers/$1';
 $route['checkUniqUserName']='User/checkUniqUserName/$1';
 $route['createUser']='User/createUser/$1';
+$route['getUserList']='User/getUserList/$1';
+$route['editUser']='User/editUser/$1';
