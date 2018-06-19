@@ -120,19 +120,19 @@ include 'header.php'
                                 <div class="form-group has-success">
                                     <div class="row">
                                         <label class="col-sm-2 control-label">Profile Picture</label>
-                                        <?php if(isset($userInfo['gender'])){?>
-                                        <div class="col-sm-2">
-                                            <?php if (empty($userInfo['image']) && $userInfo['gender'] == 1) { ?>
-                                                <img src="<?php echo base_url('images/avatar/2.jpg') ?>" width="150" height="160">
-                                            <?php } ?>
-                                            <?php if (empty($userInfo['image']) && $userInfo['gender'] == 2) { ?>
-                                                <img src="<?php echo base_url('images/avatar/7.jpg') ?>" width="150" height="160">
-                                            <?php } ?>
-                                            <?php if (!empty($userInfo['image'])) { ?>
-                                                <img src="<?php echo base_url('images/users/' . $userInfo['image'] . '') ?>" width="150" height="160">
-                                            <?php } ?>
-                                        </div>
-                                        <?php }?>
+                                        <?php if (isset($userInfo['gender'])) { ?>
+                                            <div class="col-sm-2">
+                                                <?php if (empty($userInfo['image']) && $userInfo['gender'] == 1) { ?>
+                                                    <img src="<?php echo base_url('images/avatar/2.jpg') ?>" width="150" height="160">
+                                                <?php } ?>
+                                                <?php if (empty($userInfo['image']) && $userInfo['gender'] == 2) { ?>
+                                                    <img src="<?php echo base_url('images/avatar/7.jpg') ?>" width="150" height="160">
+                                                <?php } ?>
+                                                <?php if (!empty($userInfo['image'])) { ?>
+                                                    <img src="<?php echo base_url('images/users/' . $userInfo['image'] . '') ?>" width="150" height="160">
+                                                <?php } ?>
+                                            </div>
+                                        <?php } ?>
                                         <div class="col-sm-8">
                                             <input type="file" name="image" class="form-control">
                                         </div>
@@ -179,7 +179,7 @@ include 'header.php'
                                         <label class="col-sm-2 control-label"></label>
                                         <div class="col-sm-10">
                                             <?php if (isset($edit) && $edit == true) { ?>
-                                            <input type="hidden" name="id" value="<?php echo $userInfo['id']?>">
+                                                <input type="hidden" name="id" value="<?php echo $userInfo['id'] ?>">
                                                 <button type="submit" class="btn btn-info req-save-update-btn">Update User Info</button>
                                             <?php } else { ?>
                                                 <button type="submit" class="btn btn-info req-save-update-btn">Create New User</button>
@@ -286,9 +286,12 @@ include 'header.php'
                 .on(
                         "click",
                         function (e) {
-
-                            if ($('#emailAlready').val() == 1) {
+<?php if ($this->session->userdata('user_session')['is_userCreation_permit'] == 0) { ?>
                                 e.preventDefault();
+                                alert("Waring! You do not have permission to create or update user section.");
+<?php } ?>
+                            if ($('#emailAlready').val() == 1) {
+
                                 $(".email_valid_err").text(
                                         "Email Address Already in Use.");
                             } else {
@@ -315,7 +318,7 @@ include 'header.php'
                 status: "required",
                 username: "required",
                 user_role: "required",
-                gender:"required",
+                gender: "required",
                 password: {
                     minlength: 5,
                     required: true

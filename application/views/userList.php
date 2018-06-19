@@ -38,68 +38,84 @@
         </div>
         <div class="row">
             <table class="table table-striped" id="myTable">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>User Name</th>
-                                        <th>Phone</th>
-                                        <th>User Role</th>
-                                        <th>Created Date</th>
-                                        <th>Created By</th>
-                                        <th>Modification Date</th>
-                                        <th>Modified By</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if(!empty($listUser)){ foreach ($listUser as $user) { ?>
-                                        <tr>
-                                            <td><?php echo $user['full_name'] ?></td>
-                                            <td><?php echo trim($user['email']) ?></td>
-                                            <td><?php echo trim($user['username']) ?></td>
-                                            <td><?php echo trim($user['phone']) ?></td>
-                                            <td><?php
-                                            if($user['user_role']==2){
-                                                echo 'Administrator';
-                                            }else{
-                                                echo 'General User';
-                                            }
-                                            ?></td>
-                                            <td><?php echo $user['created_date']?></td>
-                                            <td><?php echo $user['creatorInfo']['full_name']?></td>                                            
-                                            <td>
-                                                
-                                                <?php
-                                                if($user['modified_by']){
-                                                echo trim($user['modified_date']);
-                                                }else{
-                                                    echo 'Not Modified Yet.';
-                                                }
-                                                ?>
-                                            
-                                            </td>
-                                            <td>
-                                                <?php
-                                                if($user['modified_by']){
-                                                echo trim($user['modificatorInfo']['full_name']);
-                                                }else{
-                                                    echo 'Not Modified Yet.';
-                                                }
-                                                ?>
-                                               
-                                            
-                                            </td>
-                                            <td style="<?php if($user['status']==1){ echo 'color:green';}else{    echo 'color:red'; }?> "><?php if($user['status']==1){ echo 'Active';}else{    echo 'Inactive'; }?></td>
-                                            <td>
-                                                <a href="<?php echo base_url("editUser?id=" . $user['id']) ?>" style="width: 72px;height: 45px;text-align: center;padding-top: 12px;margin: 4px;" class="btn btn-info">Edit</a>  
-                                                <a href="<?php echo base_url("deleteUser?id=" . $user['id']) ?>" style="width: 72px;height: 45px;text-align: center;padding-top: 12px;margin: 4px;" onclick="validateForm('<?php echo base_url("deleteUser?id=" . $user['id']) ?>')"  class="btn btn-danger">Delete</a>   
-                                            </td>
-                                        </tr>
-                                    <?php } }?>
-                                </tbody>
-                            </table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>User Name</th>
+                        <th>Phone</th>
+                        <th>User Role</th>
+                        <th>Created Date</th>
+                        <th>Created By</th>
+                        <th>Modification Date</th>
+                        <th>Modified By</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($listUser)) {
+                        foreach ($listUser as $user) {
+                            ?>
+                            <tr>
+                                <td><?php echo $user['full_name'] ?></td>
+                                <td><?php echo trim($user['email']) ?></td>
+                                <td><?php echo trim($user['username']) ?></td>
+                                <td><?php echo trim($user['phone']) ?></td>
+                                <td><?php
+                                    if ($user['user_role'] == 2) {
+                                        echo 'Administrator';
+                                    } else {
+                                        echo 'General User';
+                                    }
+                                    ?></td>
+                                <td><?php echo $user['created_date'] ?></td>
+                                <td><?php echo $user['creatorInfo']['full_name'] ?></td>                                            
+                                <td>
+
+                                    <?php
+                                    if ($user['modified_by']) {
+                                        echo trim($user['modified_date']);
+                                    } else {
+                                        echo 'Not Modified Yet.';
+                                    }
+                                    ?>
+
+                                </td>
+                                <td>
+                                    <?php
+                                    if ($user['modified_by']) {
+                                        echo trim($user['modificatorInfo']['full_name']);
+                                    } else {
+                                        echo 'Not Modified Yet.';
+                                    }
+                                    ?>
+
+
+                                </td>
+                                <td style="<?php
+                                if ($user['status'] == 1) {
+                                    echo 'color:green';
+                                } else {
+                                    echo 'color:red';
+                                }
+                                ?> "><?php
+                                    if ($user['status'] == 1) {
+                                        echo 'Active';
+                                    } else {
+                                        echo 'Inactive';
+                                    }
+                                    ?></td>
+                                <td>
+                                    <a href="<?php echo base_url("editUser?id=" . $user['id']) ?>" style="width: 72px;height: 45px;text-align: center;padding-top: 12px;margin: 4px;" class="btn btn-info">Edit</a>  
+                                    <a href="<?php echo base_url("deleteUser?id=" . $user['id']) ?>" style="width: 72px;height: 45px;text-align: center;padding-top: 12px;margin: 4px;" onclick="validateForm('<?php echo base_url("deleteUser?id=" . $user['id']) ?>')"  class="btn btn-danger">Delete</a>   
+                                </td>
+                            </tr>
+    <?php }
+}
+?>
+                </tbody>
+            </table>
             <!-- /# column -->
 
 
@@ -143,7 +159,13 @@
         })
                 .then((willDelete) => {
                     if (willDelete) {
-                       window.location.href = url;
+<?php if ($this->session->userdata('user_session')['is_userCreation_permit'] == 0) { ?>
+                            e.preventDefault();
+                            alert("Waring! You do not have permission to delete User.");
+<?php } else { ?>
+                            window.location.href = url;
+<?php } ?>
+
                     } else {
                         swal("Your imaginary data is safe!");
                     }
